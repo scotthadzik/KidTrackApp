@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="edu.weber.cs3270.scotthadzik.kidtrackapp" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:name="edu.weber.cs3270.scotthadzik.kidtrackapp.KidTrackApp"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".LoginOrSignupActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AuthenticateActivity"
+            android:label="@string/title_activity_authenticate" >
+        </activity>
+        <activity
+            android:name=".MainFeedActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".SelectUsersActivity"
+            android:label="@string/title_activity_select_users" >
+        </activity>
+        <activity
+            android:name=".AddTaskActivity"
+            android:label="@string/title_activity_add_task" >
+        </activity>
+    </application>
+
+</manifest>
