@@ -6,17 +6,40 @@
     <string name="title_activity_authenticate">Log In</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_select_users">Select Users</string>
-    <string name="title_activity_add_link">Add a Link</string>
     <string name="loginButtonLabel">Log In</string>
     <string name="password_hint">password</string>
     <string name="email_address_hint">email address</string>
     <string name="ab_refresh">Refresh</string>
-    <string name="ab_add">Add</string>
-    <string name="ab_follow">Follow</string>
+    <string name="ab_add">Add Person</string>
     <string name="ab_logout">Log Out</string>
     <string name="signup_button_label">Sign Up</string>
     <string name="login_button_label">Log In</string>
-    <string name="desc_treehouse_logo">Treehouse Logo</string>
     <string name="title_activity_add_task">AddTaskActivity</string>
+
+    <string name="imgdesc">imgdesc</string>
+
+    <string-array name="taskTitles">
+        <item>Sweep</item>
+        <item>Make Bed</item>
+        <item>Feed Cat</item>
+        <item>Walk Dog</item>
+        <item>Feed Dog</item>
+        <item>Vacuum</item>
+        <item>Clean Toilet</item>
+    </string-array>
+
+    <array name="taskIcons">
+        <item>@drawable/broom</item>
+        <item>@drawable/bed</item>
+        <item>@drawable/cat</item>
+        <item>@drawable/dog</item>
+        <item>@drawable/dogbowl</item>
+        <item>@drawable/vacuum</item>
+        <item>@drawable/toilet</item>
+
+    </array>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

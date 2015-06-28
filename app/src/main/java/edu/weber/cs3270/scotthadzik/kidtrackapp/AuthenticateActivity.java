@@ -1,6 +1,5 @@
 package edu.weber.cs3270.scotthadzik.kidtrackapp;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -47,8 +46,8 @@ public class AuthenticateActivity extends ActionBarActivity {
                 String password = mPasswordField.getText().toString();
 
                 if (mAction.equals(LoginOrSignupActivity.SIGNUP)) {
-					/*
-					 * Sign up using ParseUser
+                    /*
+                     * Sign up using ParseUser
 					 */
                     ParseUser user = new ParseUser();
                     user.setUsername(username);
@@ -58,10 +57,13 @@ public class AuthenticateActivity extends ActionBarActivity {
                         public void done(ParseException e) {
                             mProgressBar.setVisibility(View.INVISIBLE);
                             if (e == null) {
-                                // Hooray! Let them use the app now.
-                                startActivity(new Intent(
+                                Intent intent = new Intent(
                                         AuthenticateActivity.this,
-                                        MainFeedActivity.class));
+                                        MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                //Let them use the app now.
+                                startActivity(intent);
+                                finish();
                             } else {
                                 // Sign up didn't succeed. Look at the
                                 // ParseException to figure out what went wrong
@@ -72,7 +74,7 @@ public class AuthenticateActivity extends ActionBarActivity {
                         }
                     });
                 } else {
-					/*
+                    /*
 					 * Login using ParseUser
 					 */
                     ParseUser.logInInBackground(username, password,
@@ -81,10 +83,13 @@ public class AuthenticateActivity extends ActionBarActivity {
                                                  ParseException e) {
                                     mProgressBar.setVisibility(View.INVISIBLE);
                                     if (user != null) {
-                                        // Hooray! The user is logged in.
-                                        startActivity(new Intent(
+                                        Intent intent = new Intent(
                                                 AuthenticateActivity.this,
-                                                MainFeedActivity.class));
+                                                MainActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        //Let them use the app now.
+                                        startActivity(intent);
+                                        finish();
                                     } else {
                                         // Login failed. Look at the
                                         // ParseException to see what happened.

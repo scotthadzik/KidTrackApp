@@ -3,8 +3,6 @@ package edu.weber.cs3270.scotthadzik.kidtrackapp;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -32,9 +30,10 @@ public class LoginOrSignupActivity extends ActionBarActivity {
 		 * Check for cached user using ParseUser.getCurrentUser()
 		 */
         if (ParseUser.getCurrentUser() != null) {
-            Intent intent = new Intent(this, MainFeedActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+            finish();
         }
         else {
             mLoginButton.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +42,7 @@ public class LoginOrSignupActivity extends ActionBarActivity {
                     Intent intent = new Intent(LoginOrSignupActivity.this, AuthenticateActivity.class);
                     intent.putExtra(TYPE, LOGIN);
                     startActivity(intent);
+                    finish();
                 }
             });
 
@@ -52,6 +52,7 @@ public class LoginOrSignupActivity extends ActionBarActivity {
                     Intent intent = new Intent(LoginOrSignupActivity.this, AuthenticateActivity.class);
                     intent.putExtra(TYPE, SIGNUP);
                     startActivity(intent);
+                    finish();
                 }
             });
         }
