@@ -1,31 +1,51 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     tools:context="edu.weber.cs3270.scotthadzik.kidtrackapp.AddPersonFragment">
 
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="type or paste URL"
-        android:ems="10"
-        android:inputType="textUri" >
+    <TableRow>
 
-        <requestFocus />
-    </EditText>
+        <EditText
+            android:id="@+id/edtxtPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="@string/personNameHint"
+            android:inputType="textPersonName"></EditText>
+    </TableRow>
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="match_parent"
+    <!--<TableRow>-->
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/radioPersonType"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="notes"
-        android:gravity="top|left" />
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <RadioButton
+            android:id="@+id/radio_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/parentLabel" />
+
+        <RadioButton
+            android:id="@+id/radio_child"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/childLabel" />
+    </RadioGroup>
+
+    <!--</TableRow>-->
+
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnSavePerson"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Save" />
 
-</FrameLayout>
+</TableLayout>

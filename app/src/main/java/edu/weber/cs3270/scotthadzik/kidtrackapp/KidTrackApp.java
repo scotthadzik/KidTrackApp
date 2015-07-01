@@ -2,6 +2,7 @@ package edu.weber.cs3270.scotthadzik.kidtrackapp;
 
 import android.app.Application;
 
+import com.activeandroid.ActiveAndroid;
 import com.parse.Parse;
 import com.parse.ParseACL;
 
@@ -13,6 +14,8 @@ public class KidTrackApp  extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        ActiveAndroid.initialize(this);
 
         Parse.initialize(this, "APPLICATION_ID_GOES_HERE", "CLIENT_KEY_GOES_HERE");
 

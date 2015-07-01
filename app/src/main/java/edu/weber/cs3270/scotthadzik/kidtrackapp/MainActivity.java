@@ -45,7 +45,6 @@ public class MainActivity extends ActionBarActivity {
         addPersonFragment = new AddPersonFragment();
         taskListFragment = new TaskListFragment();
 
-
         //Fragment class names
         addPersonFragmentName = addPersonFragment.getClass().getName();
 
@@ -64,8 +63,8 @@ public class MainActivity extends ActionBarActivity {
 
 
         getFragmentManager().beginTransaction()
-                .add(fragmentContainer, taskListFragment, "PDF")
-//                .addToBackStack("1BS")
+                .add(fragmentContainer, parentDashboardFragment, "PDF")
+
                 .commit();
 
         getFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
@@ -81,7 +80,6 @@ public class MainActivity extends ActionBarActivity {
             }
 
         });
-
 
         Log.d("test", "back stack count after onCreate = " + getFragmentManager().getBackStackEntryCount());
 
@@ -171,11 +169,6 @@ public class MainActivity extends ActionBarActivity {
 
 
     private void replaceFragment(Fragment fragment) {
-//        String backStateName = fragment.getClass().getName();
-
-//        String backstack = getFragmentManager().getBackStackEntryAt(0).getName();
-//        Log.d("test", "backstack = " + backstack);
-
 
         String fragmentTag = fragment.getClass().getName();
 
@@ -194,17 +187,10 @@ public class MainActivity extends ActionBarActivity {
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
 
-//        if (oldFragment != null) { //fragment not in back stack, create it.
-//            getFragmentManager().beginTransaction()
-        ft.addToBackStack(null);
         ft.hide(oldFragment);
-        ft.addToBackStack(null);
         ft.add(fragmentContainer, fragment, fragmentTag);
         ft.commit();
-//        }
-//        getFragmentManager().popBackStack();
 
-//        Log.d("test", "back stack count after pop = " + getFragmentManager().getBackStackEntryCount());
 
         for (int i = 0; i < getFragmentManager().getBackStackEntryCount(); i++) {
             Log.d("test", "Stack = " + getFragmentManager().getBackStackEntryAt(i).getId());
