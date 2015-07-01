@@ -26,6 +26,7 @@ public class AddPersonFragment extends Fragment {
     private RadioButton radioPosition;
     private Button btnSavePerson;
     private View view;
+    private MainActivity mainActivity;
 
 
     public AddPersonFragment() {
@@ -38,6 +39,8 @@ public class AddPersonFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_add_person, container, false);
+
+        mainActivity = (MainActivity) getActivity();
 
         edtxtPersonName = (EditText) view.findViewById(R.id.edtxtPersonName);
         radioPersonType = (RadioGroup) view.findViewById(R.id.radioPersonType);
@@ -52,21 +55,24 @@ public class AddPersonFragment extends Fragment {
         btnSavePerson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 int selectedID = radioPersonType.getCheckedRadioButtonId();
                 radioPosition = (RadioButton) view.findViewById(selectedID);
 
-                Toast.makeText(getActivity(), "Type " + radioPosition.getText() , Toast.LENGTH_LONG).show();
+                String name = edtxtPersonName.getText().toString();
+                String type = radioPosition.getText().toString();
+
+                if(name.equals("")){
+                    Toast.makeText(getActivity(), "You must enter a name" , Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 Person newPerson = new Person();
-                newPerson.name = edtxtPersonName.getText().toString();
-                newPerson.personType = radioPosition.getText().toString();
+                newPerson.name = name;
+                newPerson.personType = type;
                 newPerson.save();
 
-                List<Person> people = newPerson.getAllPeople();
-
-                for (Person person: people){
-                    Toast.makeText(getActivity(), "name" + person.name + " type " + person.personType , Toast.LENGTH_LONG).show();
-                }
+                mainActivity.personAdded();
             }
         });
     }
