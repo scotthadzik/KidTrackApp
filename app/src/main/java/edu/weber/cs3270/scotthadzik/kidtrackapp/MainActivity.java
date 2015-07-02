@@ -23,7 +23,7 @@ import com.parse.ParseUser;
 
 import at.markushi.ui.CircleButton;
 
-public class MainActivity extends ActionBarActivity{
+public class MainActivity extends ActionBarActivity implements ParentDashboardFragment.CommunicationChannel{
 
     //Fragments
     private ParentDashboardFragment parentDashboardFragment;
@@ -120,20 +120,10 @@ public class MainActivity extends ActionBarActivity{
         replaceFragment(parentDashboardFragment);
     }
 
-    public void refreshList() {
-
-//        ParentDashboardFragment tempFrag = new ParentDashboardFragment();
-//        getFragmentManager().beginTransaction()
-//                .replace(fragmentContainer, tempFrag)
-//                .commit();
+    @Override
+    public void setCommunication(Person person) {
+        EditPersonFragment editPersonFragment = new EditPersonFragment();
+        editPersonFragment.setPerson(person);
+        replaceFragment(editPersonFragment);
     }
-
-//    public void editPerson(Person person){
-//        EditPersonFragment editPersonFragment = new EditPersonFragment();
-//        editPersonFragment.setPerson(person);
-//        getFragmentManager().beginTransaction()
-//                .replace(fragmentContainer, editPersonFragment)
-//                .commit();
-//    }
-
 }

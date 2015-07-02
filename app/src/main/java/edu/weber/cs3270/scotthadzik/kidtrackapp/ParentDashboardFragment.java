@@ -20,13 +20,13 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ParentDashboardFragment extends ListFragment{
+public class ParentDashboardFragment extends ListFragment {
 
     private static PersonCustomAdapter adapter;
     private List<PersonRowItem> rowItems;
     Activity activity;
 
-
+    CommunicationChannel mCommChListner = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,7 +40,7 @@ public class ParentDashboardFragment extends ListFragment{
         super.onActivityCreated(savedInstanceState);
 
         buildList();
-        adapter = new PersonCustomAdapter(getActivity(), rowItems);
+        adapter = new PersonCustomAdapter(getActivity(), rowItems, ParentDashboardFragment.this);
         setListAdapter(adapter);
 //        getListView().setOnItemClickListener(adapter.editButton);
     }
@@ -57,15 +57,33 @@ public class ParentDashboardFragment extends ListFragment{
         }
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        this.activity = activity;
-
+    public void editPerson(Person person){
+        sendMessage(person);
     }
 
-    public void editPerson(Person person){
-        Log.d("test" , person.name);
+    interface CommunicationChannel
+    {
+        public void setCommunication(Person person);
+    }
+
+    @Override
+    public void onAttach(Activity activity)
+    {
+        super.onAttach(activity);
+        if(activity instanceof CommunicationChannel)
+        {
+            mCommChListner = (CommunicationChannel)activity;
+        }
+        else
+        {
+            throw new ClassCastException();
+        }
+
+    }
+    public void sendMessage(Person person)
+    {
+        Toast.makeText(getActivity(), "Person2 = " + person.name, Toast.LENGTH_LONG).show();
+        mCommChListner.setCommunication(person);
     }
 
 }

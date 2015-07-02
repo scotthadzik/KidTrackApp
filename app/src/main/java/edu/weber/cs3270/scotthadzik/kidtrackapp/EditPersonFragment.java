@@ -50,7 +50,7 @@ public class EditPersonFragment extends Fragment {
 
     public void setPerson(Person person){
         this.person = person;
-        edtxtPersonName.setText(person.name);
+//        edtxtPersonName.setText(person.name);
     }
 
 }

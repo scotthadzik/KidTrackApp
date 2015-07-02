@@ -1,6 +1,7 @@
 package edu.weber.cs3270.scotthadzik.kidtrackapp;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,15 +21,15 @@ import at.markushi.ui.CircleButton;
 /**
  * Created by Joe on 7/1/2015.
  */
-public class PersonCustomAdapter extends BaseAdapter {
+public class PersonCustomAdapter extends BaseAdapter{
     Context context;
     List<PersonRowItem> rowItem;
-    CircleButton editButton;
+    ParentDashboardFragment fragment;
 
-    PersonCustomAdapter(Context context, List<PersonRowItem> rowItem) {
+    PersonCustomAdapter(Context context, List<PersonRowItem> rowItem, ParentDashboardFragment fragment) {
         this.context = context;
         this.rowItem = rowItem;
-
+        this.fragment = fragment;
     }
 
     @Override
@@ -60,7 +61,7 @@ public class PersonCustomAdapter extends BaseAdapter {
 
         TextView txtName = (TextView) convertView.findViewById(R.id.name);
         CircleButton deleteButton = (CircleButton) convertView.findViewById(R.id.deleteButton);
-        editButton = (CircleButton) convertView.findViewById(R.id.editButton);
+        CircleButton editButton = (CircleButton) convertView.findViewById(R.id.editButton);
 
 
         final PersonRowItem row_pos = rowItem.get(position);
@@ -97,8 +98,8 @@ public class PersonCustomAdapter extends BaseAdapter {
 
     public void editItem(int id, long position){
         Person person = Person.load(Person.class, id);
-        ParentDashboardFragment parentDashboardFragment = new ParentDashboardFragment();
-        parentDashboardFragment.editPerson(person);
+        Toast.makeText(context, "Person = " + person.name, Toast.LENGTH_LONG).show();
+        fragment.editPerson(person);
     }
 
 
