@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:padding="5dp">
@@ -11,22 +12,38 @@
         android:layout_marginTop="10dp"
         android:gravity="center_vertical"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        />
 
-    <TextView
-        android:id="@+id/type"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/name"
-        android:gravity="center_vertical"
-        android:textColor="#000000"
-        android:textSize="20sp" />
+    <!--<TextView-->
+        <!--android:id="@+id/type"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_below="@id/name"-->
+        <!--android:gravity="center"-->
+        <!--android:textColor="#000000"-->
+        <!--android:textSize="20sp" />-->
 
-    <Button
+
+    <at.markushi.ui.CircleButton
         android:id="@+id/deleteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentRight="true"/>
+        android:layout_width="44dip"
+        android:layout_height="44dip"
+        android:src="@drawable/deletesign"
+        app:cb_color="#F44336"
+        app:cb_pressedRingWidth="8dip"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical|center_horizontal" />
+
+    <at.markushi.ui.CircleButton
+        android:id="@+id/editButton"
+        android:layout_width="44dip"
+        android:layout_height="44dip"
+        android:src="@drawable/edit"
+        app:cb_color="#32C24D"
+        app:cb_pressedRingWidth="8dip"
+        android:layout_toLeftOf="@id/deleteButton" />
 
 </RelativeLayout>

@@ -8,11 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
+
+import at.markushi.ui.CircleButton;
 
 /**
  * Created by Joe on 7/1/2015.
@@ -20,6 +23,7 @@ import java.util.List;
 public class PersonCustomAdapter extends BaseAdapter {
     Context context;
     List<PersonRowItem> rowItem;
+    CircleButton editButton;
 
     PersonCustomAdapter(Context context, List<PersonRowItem> rowItem) {
         this.context = context;
@@ -55,19 +59,27 @@ public class PersonCustomAdapter extends BaseAdapter {
         }
 
         TextView txtName = (TextView) convertView.findViewById(R.id.name);
-        TextView txtType = (TextView) convertView.findViewById(R.id.type);
-        Button deleteButton = (Button) convertView.findViewById(R.id.deleteButton);
+        CircleButton deleteButton = (CircleButton) convertView.findViewById(R.id.deleteButton);
+        editButton = (CircleButton) convertView.findViewById(R.id.editButton);
+
 
         final PersonRowItem row_pos = rowItem.get(position);
         // setting the name and position
         txtName.setText(row_pos.getName());
-        txtType.setText(row_pos.getType());
+//        txtType.setText(row_pos.getType());
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, row_pos.getName(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, row_pos.getName() + " was Deleted", Toast.LENGTH_LONG).show();
                 removeItem(row_pos.getId(), getItemId(position));
+            }
+        });
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, row_pos.getName() + " was Edited", Toast.LENGTH_LONG).show();
+                editItem(row_pos.getId(), getItemId(position));
             }
         });
 
@@ -75,11 +87,19 @@ public class PersonCustomAdapter extends BaseAdapter {
 
     }
 
-    public void removeItem(int id, long position){
-        Log.d("test", "id = " + id);
+    public void removeItem(int id, long position) {
         Person person = Person.load(Person.class, id);
-        rowItem.remove((int)position);
+
+        rowItem.remove((int) position);
         person.delete();
         this.notifyDataSetChanged();
     }
+
+    public void editItem(int id, long position){
+        Person person = Person.load(Person.class, id);
+        ParentDashboardFragment parentDashboardFragment = new ParentDashboardFragment();
+        parentDashboardFragment.editPerson(person);
+    }
+
+
 }

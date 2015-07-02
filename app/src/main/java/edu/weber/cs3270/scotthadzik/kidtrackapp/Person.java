@@ -27,4 +27,8 @@ public class Person extends Model {
                 .from(Person.class)
                 .execute();
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

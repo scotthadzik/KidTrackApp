@@ -16,11 +16,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.parse.ParseUser;
 
-public class MainActivity extends ActionBarActivity {
+import at.markushi.ui.CircleButton;
+
+public class MainActivity extends ActionBarActivity{
 
     //Fragments
     private ParentDashboardFragment parentDashboardFragment;
@@ -53,14 +56,17 @@ public class MainActivity extends ActionBarActivity {
 
         if (savedInstanceState != null)
             return;
-
-
-
-        getFragmentManager().beginTransaction()
-                .add(fragmentContainer, parentDashboardFragment, "PDF")
-                .commit();
+        setFragment(parentDashboardFragment);
     }
 
+    public void setFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getFragmentManager();
+        if (fragmentManager.findFragmentById(fragmentContainer) == null) {
+            fragmentManager.beginTransaction()
+                    .add(fragmentContainer, fragment)
+                    .commit();
+        }
+    }
 
 
     @Override
@@ -109,12 +115,12 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    public void personAdded(){
+    public void personAdded() {
         parentDashboardFragment = new ParentDashboardFragment();
         replaceFragment(parentDashboardFragment);
     }
 
-    public void refreshList(){
+    public void refreshList() {
 
 //        ParentDashboardFragment tempFrag = new ParentDashboardFragment();
 //        getFragmentManager().beginTransaction()
@@ -122,5 +128,12 @@ public class MainActivity extends ActionBarActivity {
 //                .commit();
     }
 
+//    public void editPerson(Person person){
+//        EditPersonFragment editPersonFragment = new EditPersonFragment();
+//        editPersonFragment.setPerson(person);
+//        getFragmentManager().beginTransaction()
+//                .replace(fragmentContainer, editPersonFragment)
+//                .commit();
+//    }
 
 }

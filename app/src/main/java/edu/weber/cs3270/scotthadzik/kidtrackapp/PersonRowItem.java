@@ -8,7 +8,6 @@ public class PersonRowItem {
     private String type;
     private int id;
 
-
     public PersonRowItem(String name, String type, long id) {
         this.name = name;
         this.type = type;
